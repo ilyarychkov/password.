@@ -3,18 +3,17 @@ import random
 import string
 
 
-def lettersnumbers(length):
-    length = random.randint(10, 12)
+def lettersnumbers():
     letters_n_numbers = string.ascii_letters + string.digits + string.punctuation
-    rand_string = ''.join(random.choice(letters_n_numbers) for i in range(length))
-    c = 0
+    rand_string =  ''.join(random.choice(letters_n_numbers) for i in range(random.randint(12, 14)))
+    counter = 0
     for i in rand_string:
         if i in string.punctuation:
-            c = c + 1
-    if set(string.digits) & set(rand_string) and set(string.punctuation) & set(rand_string) and c == 1:
+            counter = counter + 1
+    if set(string.digits) & set(rand_string) and set(string.punctuation) & set(rand_string) and counter == 1:
         return rand_string
     else:
-        return lettersnumbers(length)
+        return lettersnumbers()
 
 
 html = ''' 
@@ -35,7 +34,7 @@ html = '''
  <body> 
  <form action = "/" method = post" 
  <p>Сгенерируйте свой пароль:</p> 
- <p><f'{lettersnumbers("")}/ 
+ <p><f'{lettersnumbers()}/ 
  <p><input type = "submit" value = "Сгенерировать"/></p> 
  </form> 
  </body> 
@@ -47,6 +46,6 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return f'{html}' \
-           f'{lettersnumbers("")}'
+           f'{lettersnumbers()}'
 
 app.run()
