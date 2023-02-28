@@ -49,5 +49,4 @@ def index():
     return f'{html}' \
            f'{lettersnumbers("")}'
 
-
 app.run()
